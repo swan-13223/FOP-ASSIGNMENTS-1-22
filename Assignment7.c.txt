@@ -1,12 +1,30 @@
 #include <stdio.h>
-#include <conio.h>
-
-[span_2](start_span)
-[span_2](end_span)
 struct student{
-    int rollno;
-    char name[50];
-    int marks[3];
-    int total;
-    float percentage;
+int rollno;
+char name[50];
+float marks[5];
 };
+int main()
+{
+float total=0.0f;
+float avg= 0.0f;
+struct student students[3];
+for(int i=0;i<3;i++)
+{
+total=0.0;
+avg=0.0;
+printf("Enter your name\n");
+scanf("%s",students[i].name);
+printf("Enter your rollno:\n");
+scanf("%d",&students[i].rollno);
+for(int j=0;j<5;j++)
+{
+printf("Enter your marks\n");
+scanf("%f",&students[i].marks[j]);
+total+=students[i].marks[j];
+avg=total/5;
+}
+printf("\ntotal of the marks:%f",total);
+printf("\npercentage scored:%f",avg);
+}
+}
