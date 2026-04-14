@@ -1,40 +1,45 @@
 #include <stdio.h>
-#include <conio.h>
 
-int main(int argc, char const *argv[])
-{
-    int marks, Distinction, FirstDivision, SecondDivision, ThirdDivision;
-    printf("Enter the marks:");
-    scanf("%d", &marks);
-    
-    while(marks > 0 )
-    {
-        
-        if(marks >= 75 && marks >= 40)
-        {
-            printf("Congrats, you got distinction");
-            break;
+int main() {
+    int marks[5];
+    int i, total = 0;
+    int pass = 1;
+    float percentage;
+
+    printf("Enter marks of 5 courses (out of 100):\n");
+
+    for (i = 0; i < 5; i++) {
+        printf("Course %d: ", i + 1);
+        scanf("%d", &marks[i]);
+
+        // Check individual subject pass condition
+        if (marks[i] < 40) {
+            pass = 0;
         }
-        else if(marks >= 60 && marks<75  && marks >= 40 )
-        {
-            printf("You got first division");
-            break;
-        }
-        else if(marks < 60 && marks >= 50 && marks >= 40 )
-        {
-            printf("you got second division");
-            break;
-        }
-        else if (marks < 50 && marks >= 40 )
-        {
-            printf("you got third division");
-            break;
-        }
-        else
-        {
-            printf("You are failed!");
-            break;
-        }
+
+        total += marks[i];
     }
+
+    // If student fails in any subject
+    if (!pass) {
+        printf("\nResult: FAIL (Must score at least 40 in each course)\n");
+    } else {
+        percentage = total / 5.0;
+
+        printf("\nResult: PASS\n");
+        printf("Total Marks = %d / 500\n", total);
+        printf("Percentage = %.2f%%\n", percentage);
+
+        // Grade calculation
+        if (percentage >= 75)
+            printf("Grade: Distinction\n");
+        else if (percentage >= 60)
+            printf("Grade: First Division\n");
+        else if (percentage >= 50)
+            printf("Grade: Second Division\n");
+        else
+            printf("Grade: Third Division\n");
+    }
+
     return 0;
 }
