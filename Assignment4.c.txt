@@ -1,17 +1,19 @@
 #include <stdio.h>
-#include <conio.h>
 
-int main()
-{
-    int salary, HRA, TA, PT, finalSalary;
-    printf("Enter your salary:");
-    scanf("%d", &salary);
-    
-    HRA = 0.1*salary;
-    TA = 0.05*salary;
-    PT = 0.2*salary;
-    finalSalary = salary + HRA - TA - PT;
-
-    printf("The final salary is %d+%d-%d-%d=%d", salary, HRA, TA, PT, finalSalary);
-    return 0;  
+int main() {
+    float basicPay, hra, ta, grossSalary, professionalTax, netSalary;
+    printf("Enter Basic Pay: ");
+    scanf("%f", &basicPay);
+    hra = 0.10 * basicPay;   
+    ta  = 0.05 * basicPay;
+    grossSalary = basicPay + hra + ta;
+    professionalTax = 0.02 * grossSalary;
+    netSalary = grossSalary - professionalTax;
+    printf("\nBasic Pay: %.2f", basicPay);
+    printf("\nHRA (10%%): %.2f", hra);
+    printf("\nTA (5%%): %.2f", ta);
+    printf("\nGross Salary: %.2f", grossSalary);
+    printf("\nProfessional Tax (2%%): %.2f", professionalTax);
+    printf("\nNet Salary: %.2f\n", netSalary);
+    return 0;
 }
