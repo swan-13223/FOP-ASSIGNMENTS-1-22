@@ -1,38 +1,40 @@
 #include <stdio.h>
-#include <conio.h>
 
-//Iterative method to calculate factorial
-long long factorialIterative(int n)
-{
-    long long factorial = 1;
-    for(int i = 1; i <= n; i++) {
-        factorial *= i;
-    }
-    return factorial;
+// Recursive function
+int factorial_recursive(int n) {
+    if (n < 0)
+        return -1; // Error case
+    if (n == 0 || n == 1)
+        return 1;
+    return n * factorial_recursive(n - 1);
 }
 
-//Recursive method to calculate factorial
-long long factorialRecursive(int n)
-{
-    if(n == 0 || n == 1) {
-        return 1;
+// Iterative function
+int factorial_iterative(int n) {
+    if (n < 0)
+        return -1; // Error case
+    int result = 1;
+    for (int i = 2; i <= n; i++) {
+        result *= i;
     }
-    return n * factorialRecursive(n - 1);
+    return result;
 }
 
-int main()
-{
-    int number;
-    printf("Enter a positive integer: ");
-    scanf("%d", &number);
+int main() {
+    int num;
 
-    if(number < 0) {
-        printf("Factorial is not defined for negative numbers.\n");
-        return 1;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    int rec = factorial_recursive(num);
+    int itr = factorial_iterative(num);
+
+    if (rec == -1 || itr == -1) {
+        printf("Factorial not defined for negative numbers.\n");
+    } else {
+        printf("Factorial (Recursive) = %d\n", rec);
+        printf("Factorial (Iterative) = %d\n", itr);
     }
-
-    printf("Factorial of %d (Iterative) = %lld\n", number, factorialIterative(number));
-    printf("Factorial of %d (Recursive) = %lld\n", number, factorialRecursive(number));
 
     return 0;
 }
